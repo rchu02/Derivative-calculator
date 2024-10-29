@@ -1,0 +1,8 @@
+problems.txt
+__pycache__
+main.html
+main.js
+package-lock.json
+package.json
+parserLatex.py 
+tokenizer.py 
