@@ -44,7 +44,13 @@ def to_latex(ast):
     
     return eq
 
+def latex_equation(eq):
+    ast = generate_ast(eq)
+    return to_latex(ast)
+
 #print(to_latex(x_cosx))
 #print(to_latex(x))
 #print(to_latex(ucosx))
 #print(to_latex(sqrt))
+#print(to_latex(generate_ast('pixe')))
+#print(to_latex(generate_ast('pi*x*e')))
