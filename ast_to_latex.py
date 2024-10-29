@@ -1,9 +1,9 @@
 from full_tokenizer import generate_ast
 
-x_cosx = generate_ast('xcos(x)+sin(xyz)/y')
-x = generate_ast('x^3')
-ucosx = generate_ast('-(xcos(x)+sin(x))')
-sqrt = generate_ast('sqrt(x+2)')
+#x_cosx = generate_ast('xcos(x)+sin(xyz)/y')
+#x = generate_ast('x^3')
+#ucosx = generate_ast('-(xcos(x)+sin(x))')
+#sqrt = generate_ast('sqrt(x+2)')
 
 RIGHT = r'\right'
 LEFT = r'\left'
@@ -44,7 +44,7 @@ def to_latex(ast):
     
     return eq
 
-print(to_latex(x_cosx))
-print(to_latex(x))
-print(to_latex(ucosx))
-print(to_latex(sqrt))
+#print(to_latex(x_cosx))
+#print(to_latex(x))
+#print(to_latex(ucosx))
+#print(to_latex(sqrt))

@@ -6,3 +6,4 @@ package-lock.json
 package.json
 parserLatex.py 
 tokenizer.py 
+.DS_Store
