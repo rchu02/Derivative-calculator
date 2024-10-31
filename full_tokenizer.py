@@ -30,6 +30,7 @@ TokenSpec = [
     (r'^\)', TokenTypes.PARENTHESIS_RIGHT),
     (r'^e', TokenTypes.CONSTANT),
     (r'^pi', TokenTypes.CONSTANT),
+    (r'^phi', TokenTypes.CONSTANT),
     (r'^\s+', None),
     (r'^[a-zA-Z_]*', TokenTypes.IDENTIFIER),
 ]
@@ -53,6 +54,8 @@ class Tokenizer:
         else: 
             if full_match == 'pi':
                 self.cursor += 1
+            elif full_match == 'phi':
+                self.cursor += 2
             else: full_match = input_slice[0]
             self.cursor += 1
             return full_match

@@ -7,8 +7,8 @@ from full_tokenizer import generate_ast
 
 RIGHT = r'\right'
 LEFT = r'\left'
-cdot = r'\cdot'
-square_root = r'\sqrt'
+CDOT = r'\cdot'
+SQUARE_ROOT = r'\sqrt'
 
 def to_latex(ast):
     eq = ''
@@ -17,13 +17,17 @@ def to_latex(ast):
     
     ast_type = ast['type']
     if ast_type == 'Variable':
-        eq += ast['name']
+        if ast['name'] == 'phi':
+            eq += r'\phi'
+        elif ast['name'] == 'pi':
+            eq += r'\pi'
+        else: eq += ast['name']
     elif ast_type == 'Number':
         eq += str(ast['value'])
     elif ast_type == 'Function':
         arg = to_latex(ast['argument'])
         if ast['name'] == 'sqrt':
-            eq += f'{square_root} {{{arg}}}'
+            eq += f'{SQUARE_ROOT} {{{arg}}}'
         else: eq += f'\\{ast['name']} {LEFT}( {arg} {RIGHT})'
     elif ast_type == 'BinaryExpression':
         left = to_latex(ast['left'])
@@ -32,7 +36,7 @@ def to_latex(ast):
         if op in '+-':
             eq += f'{left} {op} {right}'
         elif op == '*':
-            eq += f'{left} {cdot} {right}'
+            eq += f'{left} {CDOT} {right}'
         elif op == '/':
             div = r'\frac'
             eq += f'{div}{{{left}}}{{{right}}}'
@@ -54,3 +58,4 @@ def latex_equation(eq):
 #print(to_latex(sqrt))
 #print(to_latex(generate_ast('pixe')))
 #print(to_latex(generate_ast('pi*x*e')))
+#print(to_latex(generate_ast('phi*x*e')))
