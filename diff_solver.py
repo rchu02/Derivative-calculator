@@ -1,17 +1,18 @@
 from latex2sympy2 import latex2latex
 from ast_to_latex import to_latex, latex_equation, RIGHT, LEFT
-from full_tokenizer import generate_ast
+from eq_parser import generate_ast
 
 def display_diff(eq):
     diff = r"\frac{d}{dx}"
-    return f'{diff}  {LEFT}({eq}{RIGHT})'
+    return f'{diff}  {LEFT}({latex_equation(eq)}{RIGHT})'
 
 def differentiation_solver(eq):
     return latex2latex(eq)
 
-x = latex_equation('e^(e^(e^(x)))')
-print(x)
-print(differentiation_solver(display_diff(x)))
+x = 'e^(e^(e^(x)))'
+diff = display_diff(x)
+print(diff)
+print(differentiation_solver(diff))
 
 #x_cosx = generate_ast('xcos(x)+sin(xyz)/y')
 #x = generate_ast('x^3')

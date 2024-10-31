@@ -1,7 +1,8 @@
-from flask import Flask
+from flask import Flask, url_for, render_template, request, Blueprint, redirect, session
 
 app = Flask(__name__)
 
-@app.route("\main.html")
+@app.route("\main")
 def hello():
-    return "Hello, World!"
+    print("hello world")
+    return render_template("main.html")

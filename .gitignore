@@ -9,3 +9,5 @@ tokenizer.py
 full-tokenizer-test.py
 .pytest_cache
 comments.py
+full-tokenizer.py
+main.css
