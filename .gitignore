@@ -11,3 +11,4 @@ full-tokenizer-test.py
 comments.py
 full-tokenizer.py
 main.css
+.DS_Store
