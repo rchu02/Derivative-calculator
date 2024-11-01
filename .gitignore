@@ -4,6 +4,6 @@ __pycache__
 main.html
 main.js
 main.css
-#ast_to_latex_test.py
-full-tokenizer.py
+test_tokenizer.py
 app-flask.py
+test.py

@@ -33,7 +33,6 @@ TokenSpec = [
     (r'^\^', TokenTypes.EXPONENTIATION),
     (r'^\(', TokenTypes.PARENTHESIS_LEFT), 
     (r'^\)', TokenTypes.PARENTHESIS_RIGHT),
-    (r'^e', TokenTypes.CONSTANT),
     (r'(?:% s)' % '|'.join(CONSTANTS), TokenTypes.CONSTANT),
     (r'^\s+', None),
     (r'^[a-zA-Z_]*', TokenTypes.IDENTIFIER),

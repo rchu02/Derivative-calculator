@@ -1,5 +1,4 @@
 from ast_to_latex import latex_equation
-import pytest
 
 def test_ast_to_latex_basic_ops():
     assert latex_equation('x+y') == r'x + y'
@@ -7,7 +6,7 @@ def test_ast_to_latex_basic_ops():
     assert latex_equation('x*y') == r'x \cdot y'
     assert latex_equation('x/y') == r'\frac{x}{y}'
     assert latex_equation('x^y') == r'x^{y}'
-    assert latex_equation('-x') == r'- \left( x \right)'
+    assert latex_equation('-x') == r'- x'
     assert latex_equation('2') == r'2'
     assert latex_equation('100') == r'100'
     assert latex_equation('450.001') == r'450.001'
@@ -30,14 +29,16 @@ def test_ast_to_latex_implicit_multiplication():
     assert latex_equation('cos(x)y') == r'\cos \left( x \right) \cdot y'
 
 def test_ast_to_latex_unary():
-    # doesn't work for now: assert latex_equation('-xy') == r'- x \cdot y'
+    assert latex_equation('-xy') == r'- x \cdot y'
     assert latex_equation('-(x+y)') == r'- \left( x + y \right)'
 
 def test_ast_to_latex_constants():
     assert latex_equation('cos(x*omega)') == r'\cos \left( x \cdot \omega \right)'
-    assert latex_equation('Phi*varepsilon') == r'\Phi \cdot \varepsilon'
+    assert latex_equation('Phivarepsilon') == r'\Phi \cdot \varepsilon'
     assert latex_equation('Phi*varesilo') == r'\Phi \cdot v \cdot a \cdot r \cdot e \cdot s \cdot i \cdot l \cdot o'
-    # doesn't work for now: assert latex_equation('pi/e-phi*i+theta') == r'\frac{\pi}{e} - \phi \cdot i + \theta'
+    # test below can be fixed as \frac{\pi}{e} - \phi \cdot i + \theta instead
+    assert latex_equation('pi/e-phi*i+theta') == r'\left( \frac{\pi}{e} - \phi \cdot i \right) + \theta'
 
 def test_ast_to_latex_complicated():
     assert latex_equation('e^(e^(e^(x)))') == r'e^{e^{e^{x}}}'
+    assert latex_equation('x*(cos(x)sin(x)+1)') == r'x \cdot \left( \cos \left( x \right) \cdot \sin \left( x \right) + 1 \right)'

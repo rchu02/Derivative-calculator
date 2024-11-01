@@ -1,4 +1,5 @@
-from eq_parser import generate_ast, CONSTANTS
+
+from eq_parser import generate_ast, CONSTANTS, Tokenizer
 
 # x_cosx = generate_ast('xcos(x)+sin(xyz)/y')
 # x = generate_ast('x^3')
@@ -53,9 +54,12 @@ def to_latex(ast, prev_op=False):
             elif op == '^':
                 eq += f'{left}{op}{{{right}}}'
     elif ast_type == 'UnaryExpression':
-        # will add a checker so that the argument's type is variable or number
-        argu = to_latex(ast['argument'])
-        eq += f'- {LEFT}( {argu} {RIGHT})'
+        arg = ast['argument']
+        arg_latex = to_latex(ast['argument'])
+        arg_type = arg['type']
+        if arg_type == 'Function' or (arg_type == 'BinaryExpression' and arg['operator'] in '+-'):
+            eq += f'- {LEFT}( {arg_latex} {RIGHT})'        
+        else: eq += f'- {arg_latex}'
     
     return eq
 
