@@ -5,7 +5,7 @@ This project is a Derivative Calculator that can convert your given equation int
 
 All functionalities:
 * Can convert simple and user friendly equations
-* All functions are supported with the exceptions of logarithms with bases not in $e$ currently($\ln$ and $\log$ will work but $\log_e$ or $\log_{10}$ will not)
+* All functions are supported with the exceptions of logarithms with bases not in $e$ and $10$ currently($\ln$ and $\log$ will work but $\log_e$ or $\log_{10}$ will not)
 * All constants are supported (entire Greek alphabet, such as pi &rarr; $\pi$ or omega &rarr; $\omega$). 
 * Reads implicit multiplication, such as where $xy$ will be read as $x \cdot y$
 * Unary negatives, such as $-(x+y)$. 
