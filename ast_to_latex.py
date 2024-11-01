@@ -53,6 +53,7 @@ def to_latex(ast, prev_op=False):
             elif op == '^':
                 eq += f'{left}{op}{{{right}}}'
     elif ast_type == 'UnaryExpression':
+        # will add a checker so that the argument's type is variable or number
         argu = to_latex(ast['argument'])
         eq += f'- {LEFT}( {argu} {RIGHT})'
     
