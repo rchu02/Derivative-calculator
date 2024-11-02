@@ -19,12 +19,19 @@ if __name__ == "__main__":
     try:
         diff = display_diff(eq)
         print(f"\nThis is your equation in LaTeX: {display_diff(eq)}\n")
-    except:
+    except ValueError as e:
+        print(e)
+        sys.exit(0)
+    except IndexError as e:
+        print("Missing arguments")
+        sys.exit(0)
+    except Exception as e:
+        print(e)
         print("Invalid Equation")
         sys.exit(0)
     
     proc = input("Y/N to differentiate: ")
     if proc == "Y" or proc == "y":
-        print(f"\nYour Differentiated equation \n {differentiation_solver(diff)}")
+        print(f"\nYour Differentiated equation \n {differentiation_solver(diff)}\n")
     else:
         sys.exit(0)

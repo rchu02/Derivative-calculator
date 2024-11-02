@@ -1,11 +1,6 @@
 
 from eq_parser import generate_ast, CONSTANTS, Tokenizer
 
-# x_cosx = generate_ast('xcos(x)+sin(xyz)/y')
-# x = generate_ast('x^3')
-# ucosx = generate_ast('-(xcos(x)+sin(x))')
-# sqrt = generate_ast('sqrt(x+2)')
-
 RIGHT = r'\right'
 LEFT = r'\left'
 CDOT = r'\cdot'
@@ -67,10 +62,6 @@ def latex_equation(eq):
     ast = generate_ast(eq)
     return to_latex(ast)
 
-# print(to_latex(x_cosx))
-# print(to_latex(x))
-# print(to_latex(ucosx))
-# print(to_latex(sqrt))
 # print(to_latex(generate_ast('pixe')))
 # print(to_latex(generate_ast('pi*x*e')))
 # print(to_latex(generate_ast('phi*x*e')))

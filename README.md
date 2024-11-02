@@ -1,11 +1,18 @@
 # Derivative-calculator
 This project is a Derivative Calculator that can convert your given equation into a LaTeX equation using a parser and Abstract Syntax Tree (AST), which then finds the derivative in LaTeX. It currently implements the `main.py` for the CLI as its main functionality.
 
-![Example of CLI in action](pictures/example.png)
+![Example of CLI in action](pictures/CLI_example.png)
 
 All functionalities:
 * Can convert simple and user friendly equations
-* All functions are supported with the exceptions of logarithms with bases not in $e$ and $10$ currently($\ln$ and $\log$ will work but $\log_e$ or $\log_{10}$ or $\log_2$ will not)
+* Supports the use of addition(`+`), subtraction(`-`), multiplication(`*`), division(`/`), and exponentiation(`^`)
+* All elementary functions are supported these include:  
+    * Square root. $\sqrt{}$
+    * Trigonometric functions. Like $\tan$.
+    * Inverse Trig functions. Like $\arccos$
+    * Hyperbolic Trig functions. Like $\sinh$.
+    * Inverse Hyperbolic Trig functions. Like $\text{arccoth}$.
+    * This is with the exceptions of logarithms with bases not in $e$ and $10$ ($\ln$ and $\log$ will work but $\log_e$ or $\log_{10}$ or $\log_2$ will not). 
 * All constants are supported (entire Greek alphabet, such as pi &rarr; $\pi$ or omega &rarr; $\omega$). 
 * Reads implicit multiplication, such as where $xy$ will be read as $x \cdot y$
 * Unary negatives, such as $-(x+y)$. 
@@ -16,3 +23,7 @@ The calculator currently only supports the use of differentiating in terms of $x
 This project implements the package of [latex2sympy](https://pypi.org/project/latex2sympy2/) which is a parser for LaTeX math expressions that is converted to the equivalent [SymPy](https://www.sympy.org/en/index.html) form.
 
 If you wish to try it out, download the file, and make sure you have all packages downloaded using `pip`. Now run `main.py` and input your LaTeX equations and your differentiated equation will be outputted in LaTeX!
+
+## Abstract Syntax Tree
+The idea of the AST is that we can parse through whatever the user wants to input, which then allows the computer to know what the input is actually meant to be. A good question to ask is how does a computer know what the function $\cos{x}$ means, it may intrepret it as $c\cdot o \cdot s \cdot x$ instead. The AST solves all these issues and is able to determine what the function would look like. Below is a an example of what the AST looks like with the input $\frac{\cos{x}+y}{\pi}$.
+![Example Abstract Syntax Tree](pictures/ast_example.png)

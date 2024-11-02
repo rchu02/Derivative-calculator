@@ -93,7 +93,7 @@ class Tokenizer:
                     token_type = 'FUNCTION'  
             return {'type': token_type, 'value': token_value}
 
-        raise SyntaxError(f'Unexpected token: "{input_slice[0]}"')
+        raise SyntaxError(f'Unexpected input: "{input_slice[0]}"')
 
 operators = {
     'u-': {'prec': 4, 'assoc': 'right'},  
@@ -106,7 +106,7 @@ operators = {
 
 def assert_valid(predicate):
     if not predicate:
-        raise ValueError('Assertion failed due to invalid token')
+        raise ValueError('Bracket is missing')
 
 def generate_ast(input):
     op_symbols = list(operators.keys())
@@ -193,7 +193,7 @@ def generate_ast(input):
             if peek() and is_function(peek()):
                 add_to_output(handle_pop()) # Handle the function if it's on the stack
         else:
-            raise ValueError(f'Invalid token: {token}')
+            raise ValueError(f'Invalid input: {token}')
     
     tokenizer = Tokenizer(input)
     token = None
