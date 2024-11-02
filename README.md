@@ -26,4 +26,5 @@ If you wish to try it out, download the file, and make sure you have all package
 
 ## Abstract Syntax Tree
 The idea of the AST is that we can parse through whatever the user wants to input, which then allows the computer to know what the input is actually meant to be. A good question to ask is how does a computer know what the function $\cos{x}$ means, it may intrepret it as $c\cdot o \cdot s \cdot x$ instead. The AST solves all these issues and is able to determine what the function would look like. Below is a an example of what the AST looks like with the input $\frac{\cos(x)+y}{\pi}$.
+
 <img src="pictures/ast_example.png" alt="drawing" width="400"/>
