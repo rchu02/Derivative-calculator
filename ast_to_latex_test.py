@@ -37,7 +37,7 @@ def test_ast_to_latex_constants():
     assert latex_equation('Phivarepsilon') == r'\Phi \cdot \varepsilon'
     assert latex_equation('Phi*varesilo') == r'\Phi \cdot v \cdot a \cdot r \cdot e \cdot s \cdot i \cdot l \cdot o'
     # test below can be fixed as \frac{\pi}{e} - \phi \cdot i + \theta instead
-    assert latex_equation('pi/e-phi*i+theta') == r'\left( \frac{\pi}{e} - \phi \cdot i \right) + \theta'
+    assert latex_equation('pi/e-phi*i+theta') == r'\frac{\pi}{e} - \phi \cdot i + \theta'
 
 def test_ast_to_latex_complicated():
     assert latex_equation('e^(e^(e^(x)))') == r'e^{e^{e^{x}}}'
