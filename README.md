@@ -19,7 +19,7 @@ All functionalities:
 * White space is ignored ✅
 * All function input must be inside of brackets, an example would be for $\sin(x)$, where the $x$ is inside braces, which is not equivalent to $sinx$, where each $s$, $i$, $n$ and $x$ are all variables. This is to avoid confusion between the calculator and user that is inputting the values.
 
-The calculator currently only supports the use of differentiating in terms of $x$. In addition this calculator does not support functionalities that are `**`, `{}`, `[]`. Furthermore, when inputting your equation make sure there are no `\` in the equation even in front of **constants**, in other words no LaTeX inputs are allowed. There will be future changes so that these can be implemented in the calculator.
+ Furthermore, when inputting your equation make sure there are no `\` in the equation even in front of **constants**, in other words no LaTeX inputs are allowed. There will be future changes so that these can be implemented in the calculator.
 
 This project implements the package of <a href="https://pypi.org/project/latex2sympy2/" target="_blank">latex2sympy</a> which is a parser for LaTeX math expressions that is converted to the equivalent <a href="https://www.sympy.org/en/index.html" target="_blank">SymPy</a> form.
 

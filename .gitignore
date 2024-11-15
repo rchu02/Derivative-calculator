@@ -7,3 +7,4 @@ main.css
 test_tokenizer.py
 app-flask.py
 test.py
+ast-to-latex-test.py

@@ -16,6 +16,7 @@ class TokenTypes:
     NUMBER = 'NUMBER'
     IDENTIFIER = 'IDENTIFIER'
     CONSTANT = 'CONSTANT'
+    # FUNCTION = ''
     ADDITION = '+'
     SUBTRACTION = '-'
     MULTIPLICATION = '*'
@@ -28,13 +29,14 @@ TokenSpec = [
     (r'^(?:\d+(?:\.\d*)?|\.\d+)', TokenTypes.NUMBER),
     (r'^\+', TokenTypes.ADDITION), 
     (r'^\-', TokenTypes.SUBTRACTION),
+    (r'^(?:\^|\*\*)', TokenTypes.EXPONENTIATION),
     (r'^\*', TokenTypes.MULTIPLICATION), 
     (r'^\/', TokenTypes.DIVISION),
-    (r'^\^', TokenTypes.EXPONENTIATION),
-    (r'^\(', TokenTypes.PARENTHESIS_LEFT), 
-    (r'^\)', TokenTypes.PARENTHESIS_RIGHT),
+    (r'^[({[]', TokenTypes.PARENTHESIS_LEFT), 
+    (r'^[)}\]]', TokenTypes.PARENTHESIS_RIGHT),
     (r'(?:% s)' % '|'.join(CONSTANTS), TokenTypes.CONSTANT),
     (r'^\s+', None),
+    # (r'^log_\((.*)\)\(([^)]+)\)', 'FUNCTION'),
     (r'^[a-zA-Z_]*', TokenTypes.IDENTIFIER),
 ]
 
@@ -66,11 +68,13 @@ class Tokenizer:
         else: 
             if full_match in CONSTANTS:
                 self.cursor += len(full_match)
+            elif full_match == '**':
+                self.cursor += len(full_match)
             elif is_float(full_match):
                 self.cursor += len(full_match)
             else: 
                 full_match = input_slice[0]
-                self.cursor += 1
+                self.cursor += len(full_match)
             return full_match
 
     def get_next_token(self):
@@ -91,6 +95,10 @@ class Tokenizer:
                     token_type = 'VARIABLE'
                 else:
                     token_type = 'FUNCTION'  
+            if token_type in '()':
+                token_value = token_type
+            if token_type == '^':
+                token_value = token_type
             return {'type': token_type, 'value': token_value}
 
         raise SyntaxError(f'Unexpected input: "{input_slice[0]}"')
@@ -252,3 +260,5 @@ def generate_ast(input):
 #ast = generate_ast('5cos(pix)+Delta')
 #print(ast)
 #print(generate_ast('x-(ln(x)+x)'))
+# ast = generate_ast('log_(2x+1)(cos(5x/2))')
+# print(ast)
