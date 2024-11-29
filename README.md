@@ -45,3 +45,6 @@ python main.py
 The idea of the AST is that we can parse through whatever the user wants to input, which then allows the computer to know what the input is actually meant to be. A good question to ask is how does a computer know what the function $\cos{(x)}$ means, it may intrepret it as $c\cdot o \cdot s \cdot x$ instead. The AST solves all these issues and is able to determine what the function would look like. Below is a an example of what the AST looks like with the input (cos(x)+y)/pi which in LaTeX would be: $\frac{\cos(x)+y}{\pi}$.
 
 <img src="pictures/ast_example.png" alt="drawing" width="400"/>
+
+## Future changes
+This calculator will be imported to a server that will render the LaTeX on it so it will be easier to interact and see rather than look at it through as a literal equation in LaTeX on the CLI. In addition, I hope to add even more calculators using the vast SymPy package, including Integration, Laplace transform, and Fourier transform calculators.
