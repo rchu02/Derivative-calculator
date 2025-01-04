@@ -12,32 +12,19 @@ CONSTANTS = ['pi', 'Pi',  'phi', 'Phi', 'theta', 'Theta', 'alpha', 'beta', 'gamm
             'vartheta', 'iota', 'kappa',  'mu', 'nu', 'xi', 'rho', 'varrho', 'sigma',
             'Sigma', 'tau', 'upsilon', 'Upsilon', 'chi', 'varphi', 'psi', 'Psi', 'omega']
 
-class TokenTypes:
-    NUMBER = 'NUMBER'
-    IDENTIFIER = 'IDENTIFIER'
-    CONSTANT = 'CONSTANT'
-    # FUNCTION = ''
-    ADDITION = '+'
-    SUBTRACTION = '-'
-    MULTIPLICATION = '*'
-    DIVISION = '/'
-    EXPONENTIATION = '^'
-    PARENTHESIS_LEFT = '('
-    PARENTHESIS_RIGHT = ')'
-
 TokenSpec = [ 
-    (r'^(?:\d+(?:\.\d*)?|\.\d+)', TokenTypes.NUMBER),
-    (r'^\+', TokenTypes.ADDITION), 
-    (r'^\-', TokenTypes.SUBTRACTION),
-    (r'^(?:\^|\*\*)', TokenTypes.EXPONENTIATION),
-    (r'^\*', TokenTypes.MULTIPLICATION), 
-    (r'^\/', TokenTypes.DIVISION),
-    (r'^[({[]', TokenTypes.PARENTHESIS_LEFT), 
-    (r'^[)}\]]', TokenTypes.PARENTHESIS_RIGHT),
-    (r'(?:% s)' % '|'.join(CONSTANTS), TokenTypes.CONSTANT),
+    (r'^(?:\d+(?:\.\d*)?|\.\d+)', 'NUMBER'),
+    (r'^\+', '+'), 
+    (r'^\-', '-'),
+    (r'^(?:\^|\*\*)', '^'),
+    (r'^\*', '*'), 
+    (r'^\/', '/'),
+    (r'^[({[]', '('), 
+    (r'^[)}\]]', ')'),
+    (r'(?:% s)' % '|'.join(CONSTANTS), 'CONSTANT'),
     (r'^\s+', None),
     # (r'^log_\((.*)\)\(([^)]+)\)', 'FUNCTION'),
-    (r'^[a-zA-Z_]*', TokenTypes.IDENTIFIER),
+    (r'^[a-zA-Z_]*', 'IDENTIFIER'),
 ]
 
 def is_float(value):
