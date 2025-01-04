@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Derivative Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+</head>
+<form method="POST" action="/">
+    <h1>Derivative Calculator</h1>
+    <h2>Enter LaTeX Expression:</h2>
+    <input type="text" id="latexInput" name="latexInput" placeholder="Enter equation here" value="{{ user_input }}">
+    <button name="button" value="render">Render</button>
+    
+    <h3>Your equation:</h3>
+    <div id="latexOutput" name="latexOutput">\( {{ equation }} \)</div> 
+    <input type="hidden" id="hiddenOutput" name="hiddenOutput" value="{{ latex_equation }}">
+
+    <input type="submit" name="button" value="Derivitate!">
+    <div id="latexOutput">\( {{ derivative }} \)</div>
+</form>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        MathJax.typeset();
+    });
+</script>
+</body>
+</html>

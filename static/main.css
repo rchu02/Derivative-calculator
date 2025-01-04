@@ -1,0 +1,12 @@
+#latexOutput {
+    border: none;          /* Remove the border */
+    font-size: 1.5em;      /* Increase the font size */
+    width: 100%;           /* Make it as wide as the parent container */
+    padding: 10px;         /* Add some padding for better readability */
+    background-color: transparent; /* Make the background transparent */
+    resize: none;          /* Prevent resizing (if multiline input in the future) */
+    color: #333;           /* Set the text color */
+    box-shadow: none;      /* Remove any shadow */
+    outline: none;         /* Remove the focus outline */
+    text-align: left;      /* Align text to the left */
+}

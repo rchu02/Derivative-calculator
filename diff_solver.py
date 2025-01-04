@@ -9,10 +9,10 @@ def display_diff(eq):
 def differentiation_solver(eq):
     return latex2latex(eq)
 
-x = 'e^(e^(e^(x)))'
-diff = display_diff(x)
-print(diff)
-print(differentiation_solver(diff))
+# x = 'e^(e^(e^(x)))'
+# diff = display_diff(x)
+# print(diff)
+# print(differentiation_solver(diff))
 
 #x_cosx = generate_ast('xcos(x)+sin(xyz)/y')
 #x = generate_ast('x^3')
