@@ -3,8 +3,7 @@ import re
 FUNCTIONS = [
     'sin', 'cos', 'tan', 'csc', 'sec', 'cot', 'arcsin', 'arccos', 'arctan',
     'arccsc', 'arcsec', 'arccot', 'sinh', 'cosh', 'tanh', 'csch', 'sech',
-    'coth', 'arcsinh', 'arccosh', 'arctanh', 'arccsch', 'arcsech', 'arccoth',
-    'ln', 'log', 'exp', 'sqrt'
+    'coth', 'ln', 'log', 'exp', 'sqrt'
 ]
 
 CONSTANTS = ['pi', 'Pi',  'phi', 'Phi', 'theta', 'Theta', 'alpha', 'beta', 'gamma', 'Gamma', 

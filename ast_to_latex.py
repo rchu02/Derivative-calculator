@@ -2,7 +2,6 @@ from eq_parser import generate_ast, CONSTANTS
 
 RIGHT = r'\right'
 LEFT = r'\left'
-CDOT = r'\cdot'
 SQUARE_ROOT = r'\sqrt'
 
 def to_latex(ast, prev_op=False):
@@ -33,7 +32,7 @@ def to_latex(ast, prev_op=False):
             elif op == '*':
                 left = to_latex(ast['left'], True)
                 right = to_latex(ast['right'], True)
-                eq += f'{left} {CDOT} {right}'
+                eq += f'{left} {right}'
             elif op == '/':
                 left = to_latex(ast['left'], True)
                 right = to_latex(ast['right'], True)
@@ -51,7 +50,7 @@ def to_latex(ast, prev_op=False):
             elif op == '*':
                 left = to_latex(ast['left'], True)
                 right = to_latex(ast['right'], True)
-                eq += f'{left} {CDOT} {right}'
+                eq += f'{left} {right}'
             elif op == '/':
                 left = to_latex(ast['left'], True)
                 right = to_latex(ast['right'], True)
