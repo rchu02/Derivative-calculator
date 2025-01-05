@@ -49,4 +49,4 @@ The idea of the AST is that we can parse through whatever the user wants to inpu
 <img src="pictures/ast_example.png" alt="drawing" width="400"/>
 
 ## Future changes
-This calculator will be imported to a server that will render the LaTeX on it so it will be easier to interact and see rather than look at it through as a literal equation in LaTeX on the CLI. In addition, I hope to add even more calculators using the vast SymPy package, including Integration, Laplace transform, and Fourier transform calculators.
+I wish to add the functionality of logarithms with unique bases. In addition, I hope to add even more calculators using the vast SymPy package, including Integration, Laplace transform, and Fourier transform calculators.
