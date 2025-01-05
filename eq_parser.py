@@ -23,7 +23,7 @@ TokenSpec = [
     (r'^[)}\]]', ')'),
     (r'(?:% s)' % '|'.join(CONSTANTS), 'CONSTANT'),
     (r'^\s+', None),
-    # (r'^log_\((.*)\)\(([^)]+)\)', 'FUNCTION'),
+    (r'^log_', 'LOG'),
     (r'^[a-zA-Z_]*', 'IDENTIFIER'),
 ]
 
@@ -53,11 +53,7 @@ class Tokenizer:
             self.cursor += len(full_match)
             return full_match
         else: 
-            if full_match in CONSTANTS:
-                self.cursor += len(full_match)
-            elif full_match == '**':
-                self.cursor += len(full_match)
-            elif is_float(full_match):
+            if full_match in CONSTANTS or full_match == '**' or is_float(full_match) or full_match == 'log_':
                 self.cursor += len(full_match)
             else: 
                 full_match = input_slice[0]
@@ -81,7 +77,7 @@ class Tokenizer:
                 if len(token_value) == 1:
                     token_type = 'VARIABLE'
                 else:
-                    token_type = 'FUNCTION'  
+                    token_type = 'FUNCTION'
             if token_type in '()':
                 token_value = token_type
             if token_type == '^':
@@ -196,6 +192,7 @@ def generate_ast(input):
     while True:
         # will get the matching token like cos or * or None if there is nothing left
         token = tokenizer.get_next_token()
+        print(token)
         if not token:
             break
 
@@ -203,7 +200,7 @@ def generate_ast(input):
         if prev_token and (
             (prev_token['type'] == 'NUMBER' or prev_token['type'] == 'VARIABLE' or prev_token['type'] == 'CONSTANT'
              or prev_token['type'] == ')') and
-            (token['type'] == 'VARIABLE' or token['type'] == 'FUNCTION' or token['type'] == 'CONSTANT')):
+            (token['type'] == 'VARIABLE' or token['type'] == 'FUNCTION' or token['type'] == 'CONSTANT' or token['type'] == 'LOG')):
             handle_token('*')
         # unary value checker
         if token['value'] == '-' and (prev_token is None or prev_token['value'] == '(' or prev_token['value'] in op_symbols):
@@ -233,19 +230,7 @@ def generate_ast(input):
             output.insert(0, combined)
         return output[-1]
 
-# Test cases
-# ast = generate_ast('sin(2x)')
-# print(ast)
-# ast = generate_ast('xln(x)')
-# print(ast)
-# ast = generate_ast('pixe')
-# print(ast)
-#ast = generate_ast('-e^xcos(x)')
-#print(ast)
-#ast = generate_ast('pi*x*e')
-#print(ast)
-#ast = generate_ast('5cos(pix)+Delta')
-#print(ast)
-#print(generate_ast('x-(ln(x)+x)'))
-# ast = generate_ast('log_(2x+1)(cos(5x/2))')
-# print(ast)
+# print(generate_ast('x-(ln(x)+x)'))
+ast = generate_ast('log_(2x+1)(cos(5x/2))')
+ast = generate_ast('2x+1')
+print(ast)
