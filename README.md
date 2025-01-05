@@ -25,6 +25,8 @@ All functionalities:
 This project implements the package of <a href="https://pypi.org/project/latex2sympy2/" target="_blank">latex2sympy</a> which is a parser for LaTeX math expressions that is converted to the equivalent <a href="https://www.sympy.org/en/index.html" target="_blank">SymPy</a> form.
 
 If you wish to try it out, follow these steps:
+
+For Mac or Linux users:
 1. Clone the repository
 ```
 git clone https://github.com/rchu02/Derivative-calculator.git
@@ -42,6 +44,38 @@ pip install -r packages.txt
 python3 app.py
 ```
 5. Then go to localhost:8888 on your web browser.
+
+For Windows users:
+1. Clone the repository
+```
+git clone https://github.com/rchu02/Derivative-calculator.git
+```
+2. Go to the directory
+```
+cd Derivative-calculator
+```
+3. Install the packages
+```
+pip install -r packages.txt
+```
+4. Now there is a problem with the typing.io package when it comes to pip for windows, so you will need to change all instances of typing.io to just typing for the latex2sympy package. (You may need to run ```pip install typing```)
+    - First run ```python app.py```, then find the ```Lexer.py``` file.
+
+    then change the ```typing.io``` to just ```typing```, like so:
+
+    ![Example of the site](pictures/typing.io.png)
+
+    to
+
+    ![Example of the site](pictures/typing.png)
+
+    Then save the changes
+    - Run ```python app.py``` again, and similarily find the file to ```Parser.py```, and fix the same issue.
+5. Run the main file
+```
+python3 app.py
+```
+6. Then go to localhost:8888 on your web browser.
 
 ## Abstract Syntax Tree
 The idea of the AST is that we can parse through whatever the user wants to input, which then allows the computer to know what the input is actually meant to be. A good question to ask is how does a computer know what the function $\cos{(x)}$ means, it may intrepret it as $c\cdot o \cdot s \cdot x$ instead. The AST solves all these issues and is able to determine what the function would look like. Below is a an example of what the AST looks like with the input (cos(x)+y)/pi which in LaTeX would be: $\frac{\cos(x)+y}{\pi}$.
