@@ -1,4 +1,4 @@
-from eq_parser import generate_ast, CONSTANTS, Tokenizer
+from eq_parser import generate_ast, CONSTANTS
 
 RIGHT = r'\right'
 LEFT = r'\left'
@@ -74,11 +74,3 @@ def to_latex(ast, prev_op=False):
 def latex_equation(eq):
     ast = generate_ast(eq)
     return to_latex(ast)
-
-# print(to_latex(generate_ast('pixe')))
-# print(to_latex(generate_ast('pi*x*e')))
-# print(to_latex(generate_ast('phi*x*e')))
-# print(latex_equation('5e^(omega*pi)+y'))
-# print(latex_equation('sin(200.5x)'))
-# ln = 'x*((cos(x)sin(x))+1)'
-# print(latex_equation(ln))

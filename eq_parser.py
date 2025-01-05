@@ -12,32 +12,19 @@ CONSTANTS = ['pi', 'Pi',  'phi', 'Phi', 'theta', 'Theta', 'alpha', 'beta', 'gamm
             'vartheta', 'iota', 'kappa',  'mu', 'nu', 'xi', 'rho', 'varrho', 'sigma',
             'Sigma', 'tau', 'upsilon', 'Upsilon', 'chi', 'varphi', 'psi', 'Psi', 'omega']
 
-class TokenTypes:
-    NUMBER = 'NUMBER'
-    IDENTIFIER = 'IDENTIFIER'
-    CONSTANT = 'CONSTANT'
-    # FUNCTION = ''
-    ADDITION = '+'
-    SUBTRACTION = '-'
-    MULTIPLICATION = '*'
-    DIVISION = '/'
-    EXPONENTIATION = '^'
-    PARENTHESIS_LEFT = '('
-    PARENTHESIS_RIGHT = ')'
-
 TokenSpec = [ 
-    (r'^(?:\d+(?:\.\d*)?|\.\d+)', TokenTypes.NUMBER),
-    (r'^\+', TokenTypes.ADDITION), 
-    (r'^\-', TokenTypes.SUBTRACTION),
-    (r'^(?:\^|\*\*)', TokenTypes.EXPONENTIATION),
-    (r'^\*', TokenTypes.MULTIPLICATION), 
-    (r'^\/', TokenTypes.DIVISION),
-    (r'^[({[]', TokenTypes.PARENTHESIS_LEFT), 
-    (r'^[)}\]]', TokenTypes.PARENTHESIS_RIGHT),
-    (r'(?:% s)' % '|'.join(CONSTANTS), TokenTypes.CONSTANT),
+    (r'^(?:\d+(?:\.\d*)?|\.\d+)', 'NUMBER'),
+    (r'^\+', '+'), 
+    (r'^\-', '-'),
+    (r'^(?:\^|\*\*)', '^'),
+    (r'^\*', '*'), 
+    (r'^\/', '/'),
+    (r'^[({[]', '('), 
+    (r'^[)}\]]', ')'),
+    (r'(?:% s)' % '|'.join(CONSTANTS), 'CONSTANT'),
     (r'^\s+', None),
-    # (r'^log_\((.*)\)\(([^)]+)\)', 'FUNCTION'),
-    (r'^[a-zA-Z_]*', TokenTypes.IDENTIFIER),
+    (r'^log_', 'LOG'),
+    (r'^[a-zA-Z_]*', 'IDENTIFIER'),
 ]
 
 def is_float(value):
@@ -201,7 +188,10 @@ def generate_ast(input):
             if peek() and is_function(peek()):
                 add_to_output(handle_pop()) # Handle the function if it's on the stack
         else:
-            raise ValueError(f'Invalid input: {token}')
+            if token == '\\':
+                raise ValueError(r'Invalid input: \\')
+            else:  
+                raise ValueError(f'Invalid input: {token}')
     
     tokenizer = Tokenizer(input)
     token = None
@@ -211,7 +201,9 @@ def generate_ast(input):
         token = tokenizer.get_next_token()
         if not token:
             break
-
+        
+        if token['type'] == 'LOG':
+            raise ValueError(f'Logarithms with unique bases are not supported yet')
         # handles implicit multiplication
         if prev_token and (
             (prev_token['type'] == 'NUMBER' or prev_token['type'] == 'VARIABLE' or prev_token['type'] == 'CONSTANT'
@@ -245,20 +237,3 @@ def generate_ast(input):
             combined = {'type': 'BinaryExpression', 'operator': '*', 'left': left, 'right': right}
             output.insert(0, combined)
         return output[-1]
-
-# Test cases
-# ast = generate_ast('sin(2x)')
-# print(ast)
-# ast = generate_ast('xln(x)')
-# print(ast)
-# ast = generate_ast('pixe')
-# print(ast)
-#ast = generate_ast('-e^xcos(x)')
-#print(ast)
-#ast = generate_ast('pi*x*e')
-#print(ast)
-#ast = generate_ast('5cos(pix)+Delta')
-#print(ast)
-#print(generate_ast('x-(ln(x)+x)'))
-# ast = generate_ast('log_(2x+1)(cos(5x/2))')
-# print(ast)
