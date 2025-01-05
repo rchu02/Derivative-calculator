@@ -1,7 +1,4 @@
 .DS_Store
 .pytest_cache
 __pycache__
-test_tokenizer.py
-test.py
 ast-to-latex-test.py
-app-flask.py
